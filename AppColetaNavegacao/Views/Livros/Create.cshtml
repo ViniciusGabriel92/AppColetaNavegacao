@@ -1,0 +1,63 @@
+﻿@model AppColetaNavegacao.Models.Livro
+
+@{
+    ViewData["Title"] = "Cadastrar Livro";
+}
+
+<h3>Cadastrar Livro</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Titulo" class="control-label"></label>
+                <input asp-for="Titulo" class="form-control" />
+                <span asp-validation-for="Titulo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Autor" class="control-label"></label>
+                <input asp-for="Autor" class="form-control" />
+                <span asp-validation-for="Autor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataPublicacao" class="control-label"></label>
+                <input asp-for="DataPublicacao" class="form-control" />
+                <span asp-validation-for="DataPublicacao" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Anunciante" class="control-label"></label>
+                <input asp-for="Anunciante" class="form-control" />
+                <span asp-validation-for="Anunciante" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TelAnunciante" class="control-label"></label>
+                <input asp-for="TelAnunciante" class="form-control" />
+                <span asp-validation-for="TelAnunciante" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                @Html.DropDownListFor(model => model.CategoriaId,
+((IEnumerable<Categoria>)ViewBag.CategoriaLivros).Select(option => new SelectListItem {
+Text = option.Descricao,
+Value = option.Id.ToString(),
+Selected = (Model != null) && (option.Id == Model.CategoriaId)
+}), "Escolha uma categoria...", new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Ir para o início</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

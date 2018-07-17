@@ -1,0 +1,55 @@
+﻿@model AppColetaNavegacao.Models.Livro
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h3>Detalhes do Livro</h3>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Autor):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Autor)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataPublicacao):
+        </dt>
+        <dd>
+            @Convert.ToDateTime(Model.DataPublicacao).ToString("dd/MM/yyyy HH:mm")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Anunciante):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Anunciante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TelAnunciante):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TelAnunciante)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Categoria):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Categoria.Descricao)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a asp-action="Index">Ir para o início</a>
+</div>
